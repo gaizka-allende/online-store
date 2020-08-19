@@ -1,15 +1,20 @@
 import { addToCart } from './actions';
 
 export function convenienceStoreReducer(state, action) {
-  const { type, payload } = action;
-  const { cart } = state;
+  const { type, payload} = action;
+  const { products, cart } = state;
   switch (type) {
     case addToCart: {
-      let productId;
-      if (state.cart.items[payload.productId]) {
-        productId = { [payload.productId]: state.cart.items[payload.productId] + 1 };
+      const {productId} = payload;
+      let cartItem;
+      if (state.cart.items[productId]) {
+        cartItem = {
+          quantity: state.cart.items[productId].quantity + 1,
+        };
       } else {
-        productId = { [payload.productId]: 1 };
+        cartItem = {
+          quantity: 1,
+        };
       }
       return {
         ...state,
@@ -17,7 +22,10 @@ export function convenienceStoreReducer(state, action) {
           ...state.cart,
           items: {
             ...state.cart.items,
-            ...productId,
+            [productId]: {
+              ...cartItem,
+              name: products[productId].name
+            }
           }
         },
       };

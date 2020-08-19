@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CartItem from './CartItem';
+
 export default function Cart({
   items,
   onCheckout,
@@ -10,11 +12,15 @@ export default function Cart({
       <div className="cartItems">
         {
           cartItems.map(
-             cartItem => (
-              <div className="cartItem">
-                List item
-              </div>
-            )
+            (cartItem, index) => {
+              const name = cartItem[1].name;
+              const quantity = cartItem[1].quantity;
+              return (
+                <div className="cartItem" key={index}>
+                  <CartItem name={name} quantity={quantity} />
+                </div>
+              );
+            }
           )
         }
       </div>

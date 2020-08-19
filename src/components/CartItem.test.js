@@ -6,12 +6,15 @@ import CartItem from './CartItem';
 test('renders a cart item', () => {
   const { container, getByText } = render(
     <CartItem
-      name="GR1"
+      name="Coffee"
+      quantity={3}
     />
   );
 
-  expect(container.querySelectorAll('.cartItem')).toHaveLength(1);
+  expect(container.querySelectorAll('.container')).toHaveLength(1);
 
-  expect(getByText(/GR1/i)).toBeInTheDocument();
+  expect(getByText(/Coffee/i)).toBeInTheDocument();
+
+  expect(getByText(/3/i)).toBeInTheDocument();
 
 })

@@ -1,21 +1,18 @@
 const initialState = {
-  products: [
-    {
-      pid: 'GR1',
-      pname: 'Green tea',
+  products: {
+    'GR1': {
+      name: 'Green tea',
       price: 3.11,
     },
-    {
-      pid: 'SR1',
-      pname: 'Strawberries',
+    'SR1': {
+      name: 'Strawberries',
       price: 5,
     },
-    {
-      pid: 'CF1',
-      pname: 'Coffee',
+    'CF1': {
+      name: 'Coffee',
       price: 11.23,
     },
-  ],
+  },
   cart: {
     items: {},
   }

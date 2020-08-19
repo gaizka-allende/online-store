@@ -11,13 +11,13 @@ export default function List({
       <div className="header">List of products</div>
       <div className="list">
         {
-          items.map(
-            ({pid, pname, price}, index) => (
-              <div className="listItem" key={index}>
+          Object.entries(items).map(
+            (item) => (
+              <div className="listItem" key={item[0]}>
                 <ListItem
-                  pid={pid}
-                  pname={pname}
-                  price={price}
+                  pid={item[0]}
+                  pname={item[1].name}
+                  price={item[1].price}
                   onAdd={onAdd}
                 />
               </div>

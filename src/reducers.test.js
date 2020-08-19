@@ -9,7 +9,7 @@ test('addToCart first time', () => {
       {
         type: addToCart,
         payload: {
-          productId: 'CR1',
+          productId: 'CF1',
         },
       },
     )
@@ -19,7 +19,10 @@ test('addToCart first time', () => {
       ...initialState.cart,
       items: {
         ...initialState.cart.items,
-        'CR1': 1,
+        'CF1': {
+          name: initialState.products['CF1'].name,
+          quantity: 1,
+        },
       },
     },
   });
@@ -34,14 +37,17 @@ test('addToCart same product', () => {
           ...initialState.cart,
           items: {
             ...initialState.cart.items,
-            'CR1': 1,
+            'CF1': {
+              name: initialState.products['CF1'].name,
+              quantity: 1,
+            },
           },
         },
       },
       {
         type: addToCart,
         payload: {
-          productId: 'CR1',
+          productId: 'CF1',
         },
       },
     )
@@ -51,13 +57,16 @@ test('addToCart same product', () => {
       ...initialState.cart,
       items: {
         ...initialState.cart.items,
-        'CR1': 2,
+        'CF1': {
+          name: initialState.products['CF1'].name,
+          quantity: 2,
+        }
       },
     },
   });
 });
 
-test('another product', () => {
+test('add another product', () => {
   expect(
     convenienceStoreReducer(
       {
@@ -66,7 +75,10 @@ test('another product', () => {
           ...initialState.cart,
           items: {
             ...initialState.cart.items,
-            'CR1': 1,
+            'CF1': {
+              name: initialState.products['CF1'].name,
+              quantity: 1,
+            }
           },
         },
       },
@@ -83,8 +95,14 @@ test('another product', () => {
       ...initialState.cart,
       items: {
         ...initialState.cart.items,
-        'CR1': 1,
-        'GR1': 1,
+        'CF1': {
+          name: initialState.products['CF1'].name,
+          quantity: 1,
+        },
+        'GR1': {
+          name: initialState.products['GR1'].name,
+          quantity: 1,
+        },
       },
     },
   });

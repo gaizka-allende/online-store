@@ -1,12 +1,18 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
+import initialState from '../initialState';
 import Cart from './Cart';
 
 test('renders a cart', () => {
   const { container, getByText } = render(
     <Cart
-      items={{'GR1': 1, 'SR1': 1}}
+      items={
+        {
+          'GR1': { quantity: 1, },
+          'SR1': { quantity: 1, },
+        }
+      }
     />
   );
 

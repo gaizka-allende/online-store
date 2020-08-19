@@ -1,10 +1,19 @@
 import React from 'react';
 
-export default function CartItem() {
+export default function CartItem({
+  name,
+  quantity,
+}) {
   return (
-    <div className="cartItem">
-      <div className="name">Name</div>
-      <div className="quantity">Quantity</div>
+    <div className="container">
+      <div className="name">{name}</div>
+      <div className="quantity">{quantity}</div>
+      <style jsx>
+        {`
+          .container {
+          }
+        `}
+      </style>
     </div>
   );
 }
