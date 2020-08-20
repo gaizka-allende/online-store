@@ -1,4 +1,5 @@
 import { addToCart } from './actions';
+import { calculate } from './api/checkout';
 
 export function convenienceStoreReducer(state, action) {
   const { type, payload} = action;
@@ -6,27 +7,22 @@ export function convenienceStoreReducer(state, action) {
   switch (type) {
     case addToCart: {
       const {productId} = payload;
-      let cartItem;
-      if (state.cart.items[productId]) {
-        cartItem = {
-          quantity: state.cart.items[productId].quantity + 1,
-        };
-      } else {
-        cartItem = {
-          quantity: 1,
-        };
-      }
+      const items = {
+        ...cart.items,
+        [productId]: {
+          ...cart.items[productId]
+            ? { quantity: cart.items[productId].quantity + 1}
+            : { quantity: 1 }
+          ,
+          name: products[productId].name
+        }
+      };
       return {
         ...state,
         cart: {
-          ...state.cart,
-          items: {
-            ...state.cart.items,
-            [productId]: {
-              ...cartItem,
-              name: products[productId].name
-            }
-          }
+          ...cart,
+          items,
+          total: calculate(products, items),
         },
       };
     }

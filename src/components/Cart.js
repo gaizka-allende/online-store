@@ -4,6 +4,7 @@ import CartItem from './CartItem';
 
 export default function Cart({
   items,
+  total,
   onCheckout,
 }) {
   const cartItems = Object.entries(items);
@@ -24,7 +25,7 @@ export default function Cart({
           )
         }
       </div>
-      <div className="total">Total</div>
+      <div className="total">{parseFloat(total).toFixed(2)}</div>
       <style jsx>
         {`
           .cart {

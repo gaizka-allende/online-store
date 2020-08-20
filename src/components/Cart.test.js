@@ -13,11 +13,15 @@ test('renders a cart', () => {
           'SR1': { quantity: 1, },
         }
       }
+      total="0.00"
     />
   );
 
   expect(container.querySelectorAll('.cartItems')).toHaveLength(1);
 
   expect(container.querySelectorAll('.cartItem')).toHaveLength(2);
+
+  const headerElement = getByText(/0.00/i);
+  expect(headerElement).toBeInTheDocument();
 
 });

@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import logo from './logo.svg';
 
 import initialState from './initialState';
 import { convenienceStoreReducer } from './reducers';
@@ -26,6 +25,7 @@ function App() {
         />
         <Cart
           items={state.cart.items}
+          total={state.cart.total}
         />
       </div>
       <style jsx>

@@ -2,7 +2,7 @@ import { convenienceStoreReducer } from './reducers';
 import initialState from './initialState';
 import { addToCart } from './actions';
 
-test('addToCart first time', () => {
+test('add first time', () => {
   expect(
     convenienceStoreReducer(
       initialState,
@@ -12,23 +12,17 @@ test('addToCart first time', () => {
           productId: 'CF1',
         },
       },
-    )
+    ).cart.items,
   ).toEqual({
-    ...initialState,
-    cart: {
-      ...initialState.cart,
-      items: {
-        ...initialState.cart.items,
-        'CF1': {
-          name: initialState.products['CF1'].name,
-          quantity: 1,
-        },
-      },
+    ...initialState.cart.items,
+    'CF1': {
+      name: initialState.products['CF1'].name,
+      quantity: 1,
     },
   });
 });
 
-test('addToCart same product', () => {
+test('add same product', () => {
   expect(
     convenienceStoreReducer(
       {
@@ -50,19 +44,13 @@ test('addToCart same product', () => {
           productId: 'CF1',
         },
       },
-    )
+    ).cart.items,
   ).toEqual({
-    ...initialState,
-    cart: {
-      ...initialState.cart,
-      items: {
-        ...initialState.cart.items,
-        'CF1': {
-          name: initialState.products['CF1'].name,
-          quantity: 2,
-        }
-      },
-    },
+    ...initialState.cart.items,
+    'CF1': {
+      name: initialState.products['CF1'].name,
+      quantity: 2,
+    }
   });
 });
 
@@ -88,22 +76,84 @@ test('add another product', () => {
           productId: 'GR1',
         },
       },
-    )
+    ).cart.items,
   ).toEqual({
-    ...initialState,
-    cart: {
-      ...initialState.cart,
-      items: {
-        ...initialState.cart.items,
-        'CF1': {
-          name: initialState.products['CF1'].name,
-          quantity: 1,
-        },
-        'GR1': {
-          name: initialState.products['GR1'].name,
-          quantity: 1,
-        },
-      },
+    ...initialState.cart.items,
+    'CF1': {
+      name: initialState.products['CF1'].name,
+      quantity: 1,
+    },
+    'GR1': {
+      name: initialState.products['GR1'].name,
+      quantity: 1,
     },
   });
 });
+
+test('total after first add', () => {
+  expect(
+    convenienceStoreReducer(
+      initialState,
+      {
+        type: addToCart,
+        payload: {
+          productId: 'CF1',
+        },
+      },
+    ).cart.total,
+  ).toEqual(11.23);
+});
+
+test('total after add same product', () => {
+  expect(
+    convenienceStoreReducer(
+      {
+        ...initialState,
+        cart: {
+          ...initialState.cart,
+          items: {
+            ...initialState.cart.items,
+            'CF1': {
+              name: initialState.products['CF1'].name,
+              quantity: 1,
+            },
+          },
+        },
+      },
+      {
+        type: addToCart,
+        payload: {
+          productId: 'CF1',
+        },
+      },
+    ).cart.total,
+  ).toEqual(22.46);
+});
+
+test('total after add another product', () => {
+  expect(
+    convenienceStoreReducer(
+      {
+        ...initialState,
+        cart: {
+          ...initialState.cart,
+          items: {
+            ...initialState.cart.items,
+            'CF1': {
+              name: initialState.products['CF1'].name,
+              quantity: 1,
+            }
+          },
+        },
+      },
+      {
+        type: addToCart,
+        payload: {
+          productId: 'GR1',
+        },
+      },
+    ).cart.total,
+  ).toEqual(14.34);
+});
+
+
