@@ -11,6 +11,18 @@ export default function CartItem({
       <style jsx>
         {`
           .container {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+          }
+          .name {
+            display: inline-block;
+          }
+          .quantity {
+            display: inline-block;
+            float: right;
           }
         `}
       </style>

@@ -32,9 +32,26 @@ function App() {
         {`
           .container {
             margin: 100px auto 0 auto;
-            width: 640px;
+            width: 1138px;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            grid-column-gap: 24px;
+            background-color: #F8FAFF;
+            padding: 50px 64px;
+          }
+          @media only screen and (max-width: 1200px) {
+            .container {
+              margin: 0 auto;
+              display: block;
+              width: 800px;
+            }
+          }
+          @media only screen and (max-width: 375px) {
+            .container {
+              display: block;
+              width: 95%;
+              margin: 0 auto;
+            }
           }
 
         `}
