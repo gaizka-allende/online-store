@@ -73,3 +73,13 @@ test('buy-one-get-one-free multiple products', () => {
     ),
   ).toEqual(21.23);
 });
+
+test('strawberries bulk purchase', () => {
+  expect(
+    rules['strawberries-bulk-purchase'].apply(
+      15,
+      { 'SR1': { price: 5 } },
+      { 'SR1': { quantity: 3 } },
+    ),
+  ).toEqual(1.5);
+});

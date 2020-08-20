@@ -12,7 +12,17 @@ export default {
       );
       return discount;
     },
-  }
+  },
+  'strawberries-bulk-purchase': {
+    products: ['SR1'],
+    apply: function (total, products, cartItems) {
+      let discount = 0;
+      if(cartItems['SR1'].quantity >= 3) {
+        discount = cartItems['SR1'].quantity * 0.5;
+      }
+      return discount;
+    },
+  },
 };
 
 export function getApplicableRuleIds(rules, cartItems) {
