@@ -127,7 +127,7 @@ test('total after add same product', () => {
         },
       },
     ).cart.total,
-  ).toEqual(22.46);
+  ).toEqual(11.23);
 });
 
 test('total after add another product', () => {

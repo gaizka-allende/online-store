@@ -1,5 +1,6 @@
 import { addToCart } from './actions';
 import { calculate } from './api/checkout';
+import rules from './api/rules';
 
 export function convenienceStoreReducer(state, action) {
   const { type, payload} = action;
@@ -22,7 +23,7 @@ export function convenienceStoreReducer(state, action) {
         cart: {
           ...cart,
           items,
-          total: calculate(products, items),
+          total: calculate(products, rules, items),
         },
       };
     }
