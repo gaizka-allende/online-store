@@ -1,19 +1,10 @@
-import {calculate} from './checkout';
+import Checkout, {calculate} from './checkout';
+import rules from './rules';
 
 const products = {
   GR1: { name: 'Green tea', price: 3.11 },
   SR1: { name: 'Strawberries', price: 5 },
   CF1: { name: 'Coffee', price: 11.23 }
-};
-
-const rules = {
-  'buy-one-get-one-free': {
-    products: ['GR1', 'SR1', 'CF1'],
-    apply: (total, products) => {
-      console.log('applying buy-one-get-one-free');
-      return total;
-    },
-  }
 };
 
 const items = {
@@ -27,7 +18,7 @@ xtest('calculate', () => {
   expect(calculate(products, {}, items)).toEqual(24.34);
 });
 
-test('calculate with rules', () => {
+xtest('calculate with rules', () => {
   const apply = jest.fn();
   calculate(
     {
@@ -44,4 +35,11 @@ test('calculate with rules', () => {
     },
   );
   expect(apply).toHaveBeenCalled();
+});
+
+test('scan', () => {
+  const co = new Checkout(rules);
+  co.scan('GR1');
+  co.scan('GR1');
+  expect(co.total).toEqual(3.11);
 });

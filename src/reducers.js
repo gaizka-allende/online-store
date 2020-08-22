@@ -1,5 +1,5 @@
 import { addToCart } from './actions';
-import { calculate } from './api/checkout';
+import Checkout from './api/checkout';
 import rules from './api/rules';
 
 export function convenienceStoreReducer(state, action) {
@@ -23,7 +23,7 @@ export function convenienceStoreReducer(state, action) {
         cart: {
           ...cart,
           items,
-          total: calculate(products, rules, items),
+          total: Checkout.calculate(products, rules, items),
         },
       };
     }
