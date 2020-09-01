@@ -18,7 +18,7 @@ xtest('calculate', () => {
   expect(calculate(products, {}, items)).toEqual(24.34);
 });
 
-xtest('calculate with rules', () => {
+test('calculate with rules', () => {
   const apply = jest.fn();
   calculate(
     {
